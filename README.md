@@ -18,7 +18,7 @@ This Chrome extension helps you quickly find and switch between open tabs using 
 
 ## How to Use
 
-    1. Open the modal by pressing Ctrl + Shift + L (or another assigned shortcut).
+    1. Open the modal by pressing Ctrl + Shift + L.
 
     2. Start typing to filter the list of open tabs.
 
