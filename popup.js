@@ -1,28 +1,37 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const searchInput = document.getElementById("search");
-  const tabList = document.getElementById("tab-list");
+  const input = document.getElementById('search');
+  const tabsList = document.getElementById('tabsList');
 
-  // Fetch open tabs
-  chrome.tabs.query({}, (tabs) => {
-    tabs.forEach((tab) => {
-      const li = document.createElement("li");
 
-      li.textContent = tab.title;
-      li.onclick = () => chrome.tabs.update(tab.id, { active: true });
-      tabList.appendChild(li);
+  // Focus the input when the popup opens
+  input.focus();
+
+  // Fetch open tabs and render them
+  chrome.tabs.query({}, function (tabs) {
+    renderTabs(tabs);
+
+    // Add a listener for the input change to filter results
+    input.addEventListener('input', function () {
+      const query = input.value.toLowerCase();
+      const filteredTabs = tabs.filter(tab => tab.title.toLowerCase().includes(query));
+
+      renderTabs(filteredTabs);
     });
-  });
 
-  // Fuzzy search filter
+    // Render the tabs to the list
+    function renderTabs(tabs) {
+      tabsList.innerHTML = ''; // Clear the list
 
-  searchInput.addEventListener('input', function () {
-    const query = searchInput.value.toLowerCase();
-    const items = tabList.getElementsByTagName("li");
-
-    Array.from(items).forEach((item) => {
-      const text = item.textContent.toLowerCase();
-      item.style.display = text.includes(query) ? 'block' : 'none';
-    });
+      tabs.forEach(tab => {
+        const li = document.createElement('li');
+        li.textContent = tab.title;
+        li.addEventListener('click', function () {
+          chrome.tabs.update(tab.id, { active: true }); // Switch to the clicked tab
+          window.close(); // Close the popup once the tab is clicked
+        });
+        tabsList.appendChild(li);
+      });
+    }
   });
 });
 
