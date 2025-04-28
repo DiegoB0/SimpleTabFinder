@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Tab Fuzzy Finder",
+  "name": "Simple Tab Fuzzy Finder",
   "version": "1.0",
-  "description": "Fuzzy tab finder.",
+  "description": "Simple fuzzy finder to manage tabs in chrome.",
   "permissions": [
     "tabs",
     "commands",
