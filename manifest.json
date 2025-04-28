@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Simple Modal Extension",
+  "description": "A simple extension that opens a modal with a shortcut.",
+  "version": "1.0",
+  "permissions": [
+    "commands"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "open_modal": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K"
+      },
+      "description": "Open modal"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
