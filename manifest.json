@@ -5,7 +5,7 @@
   "description": "Open a modal with a shortcut.",
   "permissions": [
     "commands",
-    "system.display"
+    "scripting"
   ],
   "background": {
     "service_worker": "background.js"
