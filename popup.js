@@ -36,11 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
           selectedIndex = Math.max(0, selectedIndex - 1);
           renderTabs(tabs);
 
-        } else if (event.key === 'Enter' && selectedIndex >= 0) {
-          // Open the selected tab
-          chrome.tabs.update(tabs[selectedIndex].id, { active: true });
-          window.close(); // Close the popup once the tab is opened
         }
+      } else if (event.key === 'Enter' && selectedIndex >= 0) {
+
+        // Open the selected tab
+        chrome.tabs.update(tabs[selectedIndex].id, { active: true });
+        window.close(); // Close the popup once the tab is opened
       }
     });
 
@@ -50,27 +51,33 @@ document.addEventListener('DOMContentLoaded', function () {
       tabsList.innerHTML = ''; // Clear the list
 
 
-      tabs.forEach((tab, index) => {
+      // Ensure the first result is selected by default if no navigation has been done
+      if (selectedIndex === -1) {
+        selectedIndex = 0;
+      }
 
+      tabs.forEach((tab, index) => {
         const li = document.createElement('li');
         li.textContent = tab.title;
 
-
         // Highlight the selected tab
         if (index === selectedIndex) {
-          li.style.backgroundColor = '#9ba1aa'; // Highlight with blue
+          li.style.backgroundColor = '#9ba1aa'; // Highlight color
           li.style.color = 'white';
-
+        } else {
+          li.style.backgroundColor = 'transparent'; // No highlight for non-selected tabs
+          li.style.color = 'black';
         }
 
 
         li.addEventListener('click', function () {
           chrome.tabs.update(tab.id, { active: true }); // Switch to the clicked tab
-
           window.close(); // Close the popup once the tab is clicked
         });
 
+
         tabsList.appendChild(li);
+
       });
     }
   });
