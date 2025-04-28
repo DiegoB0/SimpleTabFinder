@@ -12,7 +12,7 @@
   "commands": {
     "open_modal": {
       "suggested_key": {
-        "default": "Ctrl+Shift+L"
+        "default": "Ctrl+Shift+X"
       },
       "description": "Open the modal"
     }
