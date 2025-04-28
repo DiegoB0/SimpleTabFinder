@@ -4,7 +4,8 @@
   "version": "1.0",
   "description": "Open a modal with a shortcut.",
   "permissions": [
-    "commands"
+    "commands",
+    "system.display"
   ],
   "background": {
     "service_worker": "background.js"
@@ -12,7 +13,7 @@
   "commands": {
     "open_modal": {
       "suggested_key": {
-        "default": "Ctrl+Shift+X"
+        "default": "Ctrl+Shift+L"
       },
       "description": "Open the modal"
     }
