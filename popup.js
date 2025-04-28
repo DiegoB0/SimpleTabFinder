@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Highlight the selected tab
         if (index === selectedIndex) {
-          li.style.backgroundColor = '#3b82f6'; // Highlight with blue
+          li.style.backgroundColor = '#9ba1aa'; // Highlight with blue
           li.style.color = 'white';
 
         }
